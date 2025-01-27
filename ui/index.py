@@ -7,6 +7,13 @@ st.title("NLP Model Tester")
 # Text input box
 input_text = st.text_area("Enter some text:", "")
 
+# Add a text input field
+user_input = st.text_input("Enter your message:")
+
+# Display the input
+if user_input:
+    st.write(f"You entered: {user_input}")
+
 # Button to send the input to the API
 if st.button("Get Prediction"):
     if input_text:
