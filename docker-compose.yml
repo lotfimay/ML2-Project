@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    networks:
+      - ml-project-network
+    restart: always
+
+  ui:
+    build:
+      context: ./ui
+    ports:
+      - "8501:8501"
+    networks:
+      - ml-project-network
+    depends_on:
+      - api
+    restart: always
+
+networks:
+  ml-project-network:
+    driver: bridge
