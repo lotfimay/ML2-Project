@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - test-branch  # Include your testing branch here
+      - api-ci-cd # Include your testing branch here
   pull_request:
     branches:
       - main
-      - test-branch
+      - api-ci-cd
 
 jobs:
   build-and-push:
