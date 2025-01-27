@@ -32,7 +32,7 @@ jobs:
       - name: Build, Tag, and Push Docker image
         env:
           ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-          ECR_REPOSITORY: mlops
+          ECR_REPOSITORY: lotfimay/mlops
           IMAGE_TAG: latest
         run: |
           docker build -t $ECR_REPOSITORY:$IMAGE_TAG ./api
