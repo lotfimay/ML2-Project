@@ -10,7 +10,7 @@ class InputData(BaseModel):
 # Health check endpoint
 @app.get("/health")
 def health_check():
-    return {"status": "API is running"}
+    return {"status": "API is running after ci/cd"}
 
 # Prediction endpoint
 @app.post("/predict")
