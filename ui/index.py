@@ -8,7 +8,7 @@ st.title("NLP Model Tester")
 input_text = st.text_area("Enter some text:", "")
 
 # Add a text input field
-user_input = st.text_input("Enter your message:")
+user_input = st.text_input("Enter your message massiii:")
 
 # Display the input
 if user_input:
