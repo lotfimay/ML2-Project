@@ -6,6 +6,7 @@ app = FastAPI()
 # Define a request model
 class InputData(BaseModel):
     text: str
+    user_input: str
 
 # Health check endpoint
 @app.get("/health")
@@ -14,8 +15,7 @@ def health_check():
 
 # Prediction endpoint
 @app.post("/predict")
-def predict(data: InputData):
-    # Dummy prediction logic
-    input_text = data.text
-    response = f"Received: {input_text}. Here's a dummy response!"
-    return {"input": input_text, "output": response}
+def predict(input_data: InputData):
+    # Exemple de traitement
+    processed_text = input_data.text.upper()  # Placeholder pour votre logique
+    return {"result": processed_text, "user_input": input_data.user_input}

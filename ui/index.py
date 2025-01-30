@@ -14,8 +14,8 @@ user_input = st.text_input("Entrez votre message massiiinissa:")
 # Bouton de soumission
 if st.button("Soumettre"):
     if input_text:
-        # Récupérer l'URL de l'API depuis les variables d'environnement
-        API_URL = os.getenv("API_URL", "http://ml2-api-alb-755946312.eu-north-1.elb.amazonaws.com/api")
+        # Récupérer l’URL de l’API depuis les variables d’environnement
+        API_URL = os.getenv("API_URL", "http://ml2-api-alb-755946312.eu-north-1.elb.amazonaws.com")
         
         # Préparer les données à envoyer
         payload = {
@@ -24,8 +24,8 @@ if st.button("Soumettre"):
         }
 
         try:
-            # Effectuer une requête POST vers l'API
-            response = requests.post(f"{API_URL}/process", json=payload)
+            # Effectuer une requête POST vers l’API
+            response = requests.post(f"{API_URL}/predict", json=payload)
 
             # Vérifier la réponse
             if response.status_code == 200:
@@ -39,10 +39,11 @@ if st.button("Soumettre"):
     else:
         st.warning("Veuillez entrer du texte avant de soumettre.")
 
-# Health check (optional)
+# Bouton de vérification de santé de l'API
 if st.button("Check API Health"):
     try:
-        response = requests.get("http://api:8000/health")
+        API_URL = os.getenv("API_URL", "http://ml2-api-alb-755946312.eu-north-1.elb.amazonaws.com")
+        response = requests.get(f"{API_URL}/health")
         if response.status_code == 200:
             st.success(f"API Health: {response.json()['status']}")
         else:
