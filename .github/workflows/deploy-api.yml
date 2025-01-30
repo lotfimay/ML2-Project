@@ -17,9 +17,12 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_API_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_API_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_FRONTEND_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_FRONTEND_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
+
+      - name: Test AWS Credentials
+        run: aws sts get-caller-identity
 
       - name: Log in to Amazon ECR
         id: ecr-login
