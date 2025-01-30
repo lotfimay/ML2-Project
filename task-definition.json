@@ -1,0 +1,21 @@
+{
+  "family": "ml2-task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::816069138789:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "ui",
+      "image": "816069138789.dkr.ecr.eu-north-1.amazonaws.com/ml2/ui:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8501,
+          "hostPort": 8501
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
