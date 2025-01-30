@@ -1,0 +1,31 @@
+{
+  "family": "ml2-task-api",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::816069138789:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "api",
+      "image": "816069138789.dkr.ecr.eu-north-1.amazonaws.com/ml2/api:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "hostPort": 8000
+        }
+      ],
+      "environment": [
+        {
+          "name": "ENV_VARIABLE_1",
+          "value": "value1"
+        },
+        {
+          "name": "ENV_VARIABLE_2",
+          "value": "value2"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}

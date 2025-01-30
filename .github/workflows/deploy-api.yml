@@ -1,0 +1,49 @@
+name: Deploy API
+
+on:
+  push:
+    branches:
+      - main
+      - frontend-ci-cd
+
+jobs:
+  deploy-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_API_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_API_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, Tag, and Push Docker image
+        env:
+          ECR_REGISTRY: 816069138789.dkr.ecr.eu-north-1.amazonaws.com
+          ECR_REPOSITORY: ml2/api
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REPOSITORY:$IMAGE_TAG ./api
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Deploy to ECS
+        run: |
+          aws ecs register-task-definition \
+            --family ml2-task-api \
+            --network-mode awsvpc \
+            --execution-role-arn arn:aws:iam::816069138789:role/ecsTaskExecutionRole \
+            --container-definitions file://task-definition-api.json \
+            --requires-compatibilities FARGATE \
+            --cpu "256" \
+            --memory "512"
+
+          aws ecs update-service --cluster ml2-cluster --service api-service --force-new-deployment --region eu-north-1
