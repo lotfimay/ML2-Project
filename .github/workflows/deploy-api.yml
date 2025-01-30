@@ -45,5 +45,4 @@ jobs:
 
       # Étape 6 : Déployer sur ECS
       - name: Deploy to ECS
-        run: |
-          run: aws ecs update-service --cluster ml2-cluster --service api-service --force-new-deployment --region eu-north-1
+        run: aws ecs update-service --cluster ml2-cluster --service api-service --force-new-deployment --region eu-north-1
