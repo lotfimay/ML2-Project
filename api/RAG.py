@@ -1,17 +1,10 @@
 import torch
-import torchvision
-import os
-import re
-from pinecone import Pinecone, ServerlessSpec
-from tqdm import tqdm
-from sentence_transformers import SentenceTransformer
+from pinecone import Pinecone
 from transformers import (
     AutoTokenizer,
-    AutoModelForSequenceClassification,
     AutoModelForSeq2SeqLM,
     AutoModel
 )
-from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 load_dotenv()
