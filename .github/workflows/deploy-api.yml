@@ -4,16 +4,18 @@ on:
   push:
     branches:
       - main
-      - frontend-ci-cd
+      - frontend-ci-cd # Inclure votre branche de test si nécessaire
 
 jobs:
   deploy-api:
     runs-on: ubuntu-latest
 
     steps:
+      # Étape 1 : Checkout du Code
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # Étape 2 : Configurer les Credentials AWS
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
@@ -21,13 +23,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_FRONTEND_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
+      # Étape 3 : Test des Credentials AWS
       - name: Test AWS Credentials
         run: aws sts get-caller-identity
 
+      # Étape 4 : Se Connecter à Amazon ECR
       - name: Log in to Amazon ECR
         id: ecr-login
         uses: aws-actions/amazon-ecr-login@v1
 
+      # Étape 5 : Construire, Taguer et Pousser l'Image Docker
       - name: Build, Tag, and Push Docker image
         env:
           ECR_REGISTRY: 816069138789.dkr.ecr.eu-north-1.amazonaws.com
@@ -38,15 +43,11 @@ jobs:
           docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
+      # Étape 6 : Déployer sur ECS
       - name: Deploy to ECS
         run: |
-          aws ecs register-task-definition \
-            --family ml2-task-api \
-            --network-mode awsvpc \
-            --execution-role-arn arn:aws:iam::816069138789:role/ecsTaskExecutionRole \
-            --container-definitions file://task-definition-api.json \
-            --requires-compatibilities FARGATE \
-            --cpu "256" \
-            --memory "512"
-
-          aws ecs update-service --cluster ml2-cluster --service api-service --force-new-deployment --region eu-north-1
+          aws ecs update-service \
+            --cluster ${{ secrets.AWS_ECS_CLUSTER_NAME }} \
+            --service ${{ secrets.AWS_ECS_SERVICE_NAME }} \
+            --force-new-deployment \
+            --region ${{ secrets.AWS_REGION }}
