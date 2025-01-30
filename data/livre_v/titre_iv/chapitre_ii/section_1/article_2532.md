@@ -1,0 +1,67 @@
+---
+État: VIGUEUR
+Type: AUTONOME
+Date de début: 2006-03-24
+Date de fin: 2999-01-01
+Identifiant: LEGIARTI000006450912
+Ancien identifiant: ACAXXXXXXXX5X02532AAXXAA
+URL: article/LEGI/ARTI/00/00/06/45/09/LEGIARTI000006450912.xml
+---
+
+<h1>Article 2532</h1>
+
+L'hypothèque conventionnelle ne peut être consentie que par un acte passé en
+forme authentique. La transmission et la mainlevée de l'hypothèque ont lieu dans
+la même forme.<br />
+
+Les contrats passés hors de Mayotte ne peuvent valablement avoir pour objet de
+constituer une hypothèque sur des immeubles situés à Mayotte qu'à la condition
+d'être conformes aux dispositions du présent titre.
+
+
+<details>
+  <summary><em>Références</em></summary>
+
+  <h2>Articles faisant référence à l'article</h2>
+  
+  <ul>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006532323?vers=git&vers=legifrance">Ordonnance n° 2006-346 du 23 mars 2006 relative aux sûretés - article 1 ENTIEREMENT_MODIF</a> CREATION cible
+    </li>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006448495?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME MODIFIE, en vigueur du 2006-03-24 au 2022-01-01</a> CONCORDE source
+    </li>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006448495?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME MODIFIE, en vigueur du 2006-03-24 au 2022-01-01</a> CONCORDANCE cible
+    </li>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006448494?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME MODIFIE_MORT_NE, en vigueur du 2008-01-01 au 2006-03-24</a> CONCORDE source
+    </li>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006448494?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME MODIFIE_MORT_NE, en vigueur du 2008-01-01 au 2006-03-24</a> CONCORDANCE cible
+    </li>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000044071335?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME VIGUEUR, en vigueur depuis le 2022-01-01</a> CONCORDE source
+    </li>
+    <li>
+      <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000044071335?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME VIGUEUR, en vigueur depuis le 2022-01-01</a> CONCORDANCE cible
+    </li>
+  </ul>
+  
+  <h2>Références faites par l'article</h2>
+  
+  <ul>
+    <li>
+      CODIFICATION source Loi 1804-03-15
+    </li>
+    <li>
+      2006-03-23 CREATION source <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006532323?vers=git&vers=legifrance">Ordonnance n° 2006-346 du 23 mars 2006 relative aux sûretés - article 1 ENTIEREMENT_MODIF</a>
+    </li>
+    <li>
+      2999-01-01 CONCORDE cible <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006448494?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME MODIFIE_MORT_NE, en vigueur du 2008-01-01 au 2006-03-24</a>
+    </li>
+    <li>
+      2999-01-01 CONCORDANCE source <a href="https://legal.tricoteuses.fr//redirection/LEGIARTI000006448494?vers=git&vers=legifrance">Code civil - article 2326 AUTONOME MODIFIE_MORT_NE, en vigueur du 2008-01-01 au 2006-03-24</a>
+    </li>
+  </ul>
+</details>

@@ -17,7 +17,6 @@ from dotenv import load_dotenv
 load_dotenv()
 # Configuration Pinecone
 PINECONE_API_KEY = "pcsk_5zmUoA_BTvfm3rkJd6H4i7youfn8nQSdZYryD2bgeGpKEMTRhm6wQ6dKFQ7x6bAMkAuci7"
-print(PINECONE_API_KEY)
 index_name = "ml2"                         
 
 # Initialisation de Pinecone avec  API
@@ -276,7 +275,7 @@ def full_rag_pipeline(query: str, top_k=5):
     retrieved_results = query_pinecone(query, top_k=top_k)
 
     # 2) Reranking
-    base_path = "/content/drive/MyDrive/code_civil"  # par exemple
+    base_path = "../data"
 
     reranked_docs = rerank_with_msmarco(query, retrieved_results, base_path)
 

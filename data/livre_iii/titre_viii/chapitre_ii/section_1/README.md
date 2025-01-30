@@ -1,0 +1,47 @@
+---
+Date de début: 1804-03-21
+Date de fin: 2999-01-01
+Identifiant: LEGISCTA000006150285
+---
+
+<h1>Section 1 : Des règles communes aux baux des maisons et des biens ruraux.</h1>
+
+- [Article 1714](article_1714.md)
+- [Article 1715](article_1715.md)
+- [Article 1716](article_1716.md)
+- [Article 1717](article_1717.md)
+- [Article 1718](article_1718.md)
+- [Article 1719](article_1719.md)
+- [Article 1720](article_1720.md)
+- [Article 1721](article_1721.md)
+- [Article 1722](article_1722.md)
+- [Article 1723](article_1723.md)
+- [Article 1724](article_1724.md)
+- [Article 1725](article_1725.md)
+- [Article 1726](article_1726.md)
+- [Article 1727](article_1727.md)
+- [Article 1728](article_1728.md)
+- [Article 1729](article_1729.md)
+- [Article 1730](article_1730.md)
+- [Article 1731](article_1731.md)
+- [Article 1732](article_1732.md)
+- [Article 1733](article_1733.md)
+- [Article 1734](article_1734.md)
+- [Article 1735](article_1735.md)
+- [Article 1736](article_1736.md)
+- [Article 1737](article_1737.md)
+- [Article 1738](article_1738.md)
+- [Article 1739](article_1739.md)
+- [Article 1740](article_1740.md)
+- [Article 1741](article_1741.md)
+- [Article 1742](article_1742.md)
+- [Article 1743](article_1743.md)
+- [Article 1744](article_1744.md)
+- [Article 1745](article_1745.md)
+- [Article 1746](article_1746.md)
+- [Article 1747](article_1747.md)
+- [Article 1748](article_1748.md)
+- [Article 1749](article_1749.md)
+- [Article 1750](article_1750.md)
+- [Article 1751](article_1751.md)
+- [Article 1751-1](article_1751-1.md)
