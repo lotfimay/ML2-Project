@@ -204,43 +204,40 @@ def generate_response(query: str, reranked_docs: list, max_new_tokens=300):
     puis génère une réponse via Flan-T5-Large.
     """
     # 1) Reconstruire le "context" en lisant depuis Drive
-    base_path = "/content/drive/MyDrive/code_civil"  # par exemple
+    base_path = "./data"  # par exemple
     raw_context = build_context(reranked_docs, base_path, max_files=2)
     context = clean_context(raw_context)
-    print(context)
-
-    # 2) Prompt
+    print("Contexte utilisé pour la génération :", context)
+    
     # 2) Prompt
     prompt = (
-        "Vous êtes un assistant juridique expert en droit français.\n\n"
-        "Vous disposez d'un ensemble de lois (ci-dessous appelé \"Contexte\").\n"
-        "Répondez de façon précise et concise à la question suivante,\n"
-        "en vous appuyant uniquement sur les informations contenues dans le Contexte.\n\n"
+        "Vous êtes un assistant juridique expérimenté en droit français.\n\n"
+        "Vous avez accès à un ensemble de lois et régulations (appelé \"Contexte\").\n"
+        "Veuillez répondre de manière précise, claire et naturelle à la question suivante,\n"
+        "en vous basant sur les informations fournies dans le Contexte.\n\n"
         f"Question : {query}\n\n"
         f"Contexte:\n{context}\n\n"
-        "Réponse:"
+        "Réponse :"
     )
-
-
-
+    
     # 3) Génération
     inputs = gen_tokenizer(prompt, return_tensors="pt", truncation=True, max_length=1024)
     with torch.no_grad():
         outputs = gen_model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
-            do_sample=True,
-            temperature=0.7,
+            do_sample=False,  # Désactiver le sampling pour plus de cohérence
+            temperature=0.5,  # Température plus basse
             top_k=50,
-            top_p=0.9
+            top_p=0.95
         )
-
+    
     answer = gen_tokenizer.decode(outputs[0], skip_special_tokens=True)
-    if "Réponse:" in answer:
-        answer = answer.split("Réponse:", 1)[-1].strip()
-
+    if "Réponse :" in answer:
+        answer = answer.split("Réponse :", 1)[-1].strip()
+    
     return answer
-# # Retrieval (Query Pinecone)
+
 
 def query_pinecone(query: str, top_k=5):
     """
@@ -268,23 +265,23 @@ def full_rag_pipeline(query: str, top_k=5):
     retrieved_results = query_pinecone(query, top_k=top_k)
 
     # 2) Reranking
-    base_path = "../data"
+    base_path = "./data"
 
-    reranked_docs = rerank_with_msmarco(query, retrieved_results, base_path)
+    #reranked_docs = rerank_with_msmarco(query, retrieved_results, base_path)
 
     # 3) Génération
-    final_answer = generate_response(query, reranked_docs, max_new_tokens=300)
+    final_answer = generate_response(query, retrieved_results, max_new_tokens=300)
 
-    return final_answer, reranked_docs
+    return final_answer
 
-user_question = " La négligence peut-elle être une cause de responsabilité "
-final_answer, final_docs = full_rag_pipeline(user_question, top_k=5)
+# user_question = " La négligence peut-elle être une cause de responsabilité "
+# final_answer, final_docs = full_rag_pipeline(user_question, top_k=5)
 
-print("\n===== Réponse Générée =====")
-print(final_answer)
+# print("\n===== Réponse Générée =====")
+# print(final_answer)
 
-print("\n===== Documents Rerankés (Top 5) =====")
-for i, doc in enumerate(final_docs, 1):
-    path = doc.metadata.get("source", "Inconnu")
-    score = doc.score
-    print(f"Document #{i} | Score = {score:.4f} | Path = {path}")
+# print("\n===== Documents Rerankés (Top 5) =====")
+# for i, doc in enumerate(final_docs, 1):
+#     path = doc.metadata.get("source", "Inconnu")
+#     score = doc.score
+#     print(f"Document #{i} | Score = {score:.4f} | Path = {path}")

@@ -3,10 +3,11 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+from RAG import full_rag_pipeline
+
 # Define a request model
 class InputData(BaseModel):
     text: str
-    user_input: str
 
 # Health check endpoint
 @app.get("/health")
@@ -16,6 +17,10 @@ def health_check():
 # Prediction endpoint
 @app.post("/predict")
 def predict(input_data: InputData):
+
+    print("Heere")
+    print("Predict end point called")
     # Exemple de traitement
-    processed_text = input_data.text.upper()  # Placeholder pour votre logique
-    return {"result": processed_text, "user_input": input_data.user_input}
+    response = full_rag_pipeline(input_data.text)  # Placeholder pour votre logique
+    print(response)
+    return {"result": response}

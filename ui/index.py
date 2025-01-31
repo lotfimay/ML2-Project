@@ -2,51 +2,55 @@ import streamlit as st
 import requests
 import os
 
-# Titre de l'application
-st.title("NLP Model Tester")
+# Set page title and layout
+st.set_page_config(page_title="Legal AI Assistant", layout="centered")
 
-# Boîte de saisie de texte
-input_text = st.text_area("Entrez du texte :", "")
+# API URL configuration
+API_URL = os.getenv("API_URL", "http://ml2-api-alb-755946312.eu-north-1.elb.amazonaws.com")
 
-# Champ de saisie supplémentaire
-user_input = st.text_input("Entrez votre message massiiinissa:")
+# Title
+st.markdown("<h2 style='text-align: center;'>🤖Legal AI Assistant</h2>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>Posez une question juridique, et notre modèle d'IA vous répondra.</p>", unsafe_allow_html=True)
 
-# Bouton de soumission
-if st.button("Soumettre"):
-    if input_text:
-        # Récupérer l’URL de l’API depuis les variables d’environnement
-        API_URL = os.getenv("API_URL", "http://ml2-api-alb-755946312.eu-north-1.elb.amazonaws.com")
-        
-        # Préparer les données à envoyer
+# Input field for the user's legal question
+question = st.text_area("🔍 Entrez votre question juridique :", placeholder="Exemple: Quels sont mes droits en cas de licenciement abusif?")
+
+# Button to submit the question
+if st.button("Obtenir une réponse"):
+    if question.strip():
+        # Prepare request payload
         payload = {
-            "input_text": input_text,
-            "user_input": user_input
+            "text": question, 
         }
 
-        try:
-            # Effectuer une requête POST vers l’API
-            response = requests.post(f"{API_URL}/predict", json=payload)
+        with st.spinner("Analyse de votre question... ⏳"):
+            try:
+                # Send request to API
+                response = requests.post(f"{API_URL}/predict", json=payload)
 
-            # Vérifier la réponse
-            if response.status_code == 200:
-                result = response.json()
-                st.success("Traitement réussi!")
-                st.write("Résultat :", result)
-            else:
-                st.error(f"Erreur de l'API : {response.status_code}")
-        except requests.exceptions.RequestException as e:
-            st.error(f"Erreur lors de la connexion à l'API : {e}")
+                # Process response
+                if response.status_code == 200:
+                    result = response.json()
+                    st.success("✅ Réponse obtenue avec succès !")
+                    st.markdown(f"**📌 Question :** {question}")
+                    st.markdown(f"**📝 Réponse :** {result['result']}")
+
+                else:
+                    st.error(f"🚨 Erreur API : {response.status_code}")
+
+            except requests.exceptions.RequestException as e:
+                st.error(f"❌ Problème de connexion avec l'API : {e}")
+
     else:
-        st.warning("Veuillez entrer du texte avant de soumettre.")
+        st.warning("⚠️ Veuillez entrer une question avant de soumettre.")
 
-# Bouton de vérification de santé de l'API
-if st.button("Check API Health"):
+# Button to check API status
+if st.button("📡 Vérifier l'état de l'API"):
     try:
-        API_URL = os.getenv("API_URL", "http://ml2-api-alb-755946312.eu-north-1.elb.amazonaws.com")
         response = requests.get(f"{API_URL}/health")
         if response.status_code == 200:
-            st.success(f"API Health: {response.json()['status']}")
+            st.success(f"🟢 API en ligne : {response.json()['status']}")
         else:
-            st.error(f"API Error: {response.status_code}")
+            st.error(f"🔴 Problème avec l'API : {response.status_code}")
     except Exception as e:
-        st.error(f"Error connecting to the API: {e}")
+        st.error(f"❌ Impossible de contacter l'API : {e}")
