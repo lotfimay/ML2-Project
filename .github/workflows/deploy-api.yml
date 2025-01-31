@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - frontend-ci-cd # Inclure votre branche de test si nécessaire
+      - optimizing-docker
 
 jobs:
   deploy-api:

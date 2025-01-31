@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+api/.env
+.ipynb_checkpoints/
+ui/.env

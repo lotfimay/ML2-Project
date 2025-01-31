@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - frontend-ci-cd
+      - optimizing-docker
 
 jobs:
   deploy-frontend:
