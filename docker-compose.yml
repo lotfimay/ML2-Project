@@ -1,23 +1,21 @@
+version: '3.8'
+
 services:
   api:
     build:
       context: ./api
+    container_name: myapi
     ports:
       - "8000:8000"
-    networks:
-      - ml-project-network
-    restart: always
 
   ui:
     build:
       context: ./ui
+    container_name: myui
     ports:
       - "8501:8501"
-    networks:
-      - ml-project-network
     depends_on:
       - api
-    restart: always
 
 networks:
   ml-project-network:

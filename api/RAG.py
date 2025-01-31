@@ -5,9 +5,9 @@ from transformers import (
     AutoModelForSeq2SeqLM,
     AutoModel
 )
-from dotenv import load_dotenv
 
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 # Configuration Pinecone
 PINECONE_API_KEY = "pcsk_5zmUoA_BTvfm3rkJd6H4i7youfn8nQSdZYryD2bgeGpKEMTRhm6wQ6dKFQ7x6bAMkAuci7"
 index_name = "ml2"                         
